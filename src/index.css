@@ -1,0 +1,223 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    /* Warm neutral palette with teal accent */
+    --background: 40 20% 98%;
+    --foreground: 30 10% 15%;
+
+    --card: 40 25% 99%;
+    --card-foreground: 30 10% 15%;
+
+    --popover: 40 25% 99%;
+    --popover-foreground: 30 10% 15%;
+
+    /* Teal primary accent */
+    --primary: 174 72% 40%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 174 72% 35%;
+
+    --secondary: 40 15% 94%;
+    --secondary-foreground: 30 10% 25%;
+
+    --muted: 40 15% 92%;
+    --muted-foreground: 30 8% 50%;
+
+    --accent: 40 20% 90%;
+    --accent-foreground: 30 10% 20%;
+
+    /* Priority colors */
+    --priority-high: 0 84% 60%;
+    --priority-medium: 38 92% 50%;
+    --priority-low: 142 71% 45%;
+
+    /* Category colors */
+    --category-work: 220 90% 56%;
+    --category-personal: 280 70% 60%;
+    --category-study: 38 92% 50%;
+    --category-health: 142 71% 45%;
+
+    /* Status colors */
+    --overdue: 0 84% 60%;
+    --completed: 142 71% 45%;
+    --due-soon: 38 92% 50%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 40 15% 88%;
+    --input: 40 15% 88%;
+    --ring: 174 72% 40%;
+
+    --radius: 0.75rem;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(30 10% 15% / 0.04);
+    --shadow-md: 0 4px 6px -1px hsl(30 10% 15% / 0.06), 0 2px 4px -2px hsl(30 10% 15% / 0.06);
+    --shadow-lg: 0 10px 15px -3px hsl(30 10% 15% / 0.08), 0 4px 6px -4px hsl(30 10% 15% / 0.08);
+    --shadow-card: 0 1px 3px 0 hsl(30 10% 15% / 0.04), 0 1px 2px -1px hsl(30 10% 15% / 0.04);
+    --shadow-card-hover: 0 4px 12px -2px hsl(30 10% 15% / 0.1);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 30 10% 8%;
+    --foreground: 40 15% 95%;
+
+    --card: 30 10% 10%;
+    --card-foreground: 40 15% 95%;
+
+    --popover: 30 10% 10%;
+    --popover-foreground: 40 15% 95%;
+
+    --primary: 174 72% 50%;
+    --primary-foreground: 30 10% 8%;
+    --primary-hover: 174 72% 55%;
+
+    --secondary: 30 10% 15%;
+    --secondary-foreground: 40 15% 90%;
+
+    --muted: 30 10% 18%;
+    --muted-foreground: 40 10% 55%;
+
+    --accent: 30 10% 20%;
+    --accent-foreground: 40 15% 95%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 30 10% 18%;
+    --input: 30 10% 18%;
+    --ring: 174 72% 50%;
+
+    --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.2);
+    --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.3), 0 2px 4px -2px hsl(0 0% 0% / 0.3);
+    --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.4), 0 4px 6px -4px hsl(0 0% 0% / 0.4);
+    --shadow-card: 0 1px 3px 0 hsl(0 0% 0% / 0.2), 0 1px 2px -1px hsl(0 0% 0% / 0.2);
+    --shadow-card-hover: 0 4px 12px -2px hsl(0 0% 0% / 0.4);
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+}
+
+@layer utilities {
+  .task-card {
+    @apply bg-card rounded-xl border border-border transition-all duration-200;
+    box-shadow: var(--shadow-card);
+  }
+
+  .task-card:hover {
+    box-shadow: var(--shadow-card-hover);
+    @apply border-primary/20;
+  }
+
+  .task-completed {
+    @apply opacity-60;
+  }
+
+  .priority-indicator {
+    @apply w-1 rounded-full;
+  }
+
+  .priority-high {
+    background-color: hsl(var(--priority-high));
+  }
+
+  .priority-medium {
+    background-color: hsl(var(--priority-medium));
+  }
+
+  .priority-low {
+    background-color: hsl(var(--priority-low));
+  }
+
+  .category-badge {
+    @apply px-2 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .category-work {
+    background-color: hsl(var(--category-work) / 0.15);
+    color: hsl(var(--category-work));
+  }
+
+  .category-personal {
+    background-color: hsl(var(--category-personal) / 0.15);
+    color: hsl(var(--category-personal));
+  }
+
+  .category-study {
+    background-color: hsl(var(--category-study) / 0.15);
+    color: hsl(var(--category-study));
+  }
+
+  .category-health {
+    background-color: hsl(var(--category-health) / 0.15);
+    color: hsl(var(--category-health));
+  }
+
+  .status-overdue {
+    color: hsl(var(--overdue));
+  }
+
+  .status-due-soon {
+    color: hsl(var(--due-soon));
+  }
+
+  .animate-check {
+    animation: checkmark 0.3s ease-in-out;
+  }
+
+  @keyframes checkmark {
+    0% { transform: scale(0.8); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.2s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-slide-in {
+    animation: slideIn 0.3s ease-out;
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(-10px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+}
